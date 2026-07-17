@@ -1282,7 +1282,11 @@
 
       .article-visual {
         position: relative;
-        height: clamp(180px, 28vw, 320px);
+        width: min(100%, 1000px);
+        height: auto;
+        aspect-ratio: 1672 / 941;
+        margin: 0 auto;
+        margin-inline: auto;
         overflow: hidden;
         border: 1px solid rgba(34, 211, 238, 0.34);
         background: rgba(2, 6, 23, 0.62);
@@ -1381,7 +1385,7 @@
         }
 
         .article-visual {
-          height: clamp(160px, 48vw, 230px);
+          height: auto;
         }
 
         .source-preview-compact {
@@ -2094,13 +2098,18 @@
                    }
 }));
       const featuredImages = new Map([
-        ["2026-07-12-openai-chatgpt-work-desktop", "assets/featured-01-chatgpt-work-codex.png"],
-        ["2026-07-12-openai-gpt-56-api", "assets/featured-02-openai-api-models.png"],
-        ["2026-07-12-openai-chatgpt-sites", "assets/featured-03-litert-browser-ai.png"],
         ["2026-07-09-openai-chatgpt-work-desktop", "assets/featured-01-chatgpt-work-codex.png"],
         ["2026-07-09-openai-gpt-56-api", "assets/featured-02-openai-api-models.png"],
         ["2026-07-09-openai-chatgpt-sites", "assets/featured-03-litert-browser-ai.png"]
       ]);
+
+      function getArticleImageUrl(item) {
+        const legacyUrl = featuredImages.get(item.id);
+        if (legacyUrl) return legacyUrl;
+        const rank = Number(item.rank);
+        if (!item.publishedAt || rank < 1 || rank > 3) return "";
+        return `assets/featured-${item.publishedAt}-${String(rank).padStart(2, "0")}.png`;
+      }
       const relatedResources = {
         "2026-07-12-openai-chatgpt-work-desktop": [
           {
@@ -2492,11 +2501,11 @@
       }
 
       function articleVisualMarkup(item) {
-        const imageUrl = featuredImages.get(item.id);
+        const imageUrl = getArticleImageUrl(item);
         if (!imageUrl) return "";
         return `
           <figure class="article-visual">
-            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}">
+            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}" data-article-image>
           </figure>
         `;
       }
@@ -2561,6 +2570,11 @@
           ? detailMarkup(item)
           : `<div class="empty-state">找不到這篇新聞。可能是連結已過期，或目前日期資料尚未包含這則內容。</div>`;
         if (item) {
+          detailContent.querySelectorAll("[data-article-image]").forEach((image) => {
+            image.addEventListener("error", () => {
+              image.closest(".article-visual").hidden = true;
+            }, { once: true });
+          });
           document.title = `${item.title}｜AI 每日新聞`;
           refreshArticleNote(item);
         }

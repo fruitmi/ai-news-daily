@@ -252,6 +252,47 @@
         font-size: clamp(1rem, 1.2vw, 1.12rem);
       }
 
+      .hero-scroll-cue {
+        position: absolute;
+        bottom: 18px;
+        left: 50%;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid rgba(34, 211, 238, 0.58);
+        border-radius: 50%;
+        background: rgba(2, 6, 23, 0.72);
+        color: var(--cyan);
+        cursor: pointer;
+        transform: translateX(-50%);
+        transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      .hero-scroll-cue:hover,
+      .hero-scroll-cue:focus-visible {
+        border-color: var(--cyan);
+        background: rgba(8, 18, 36, 0.92);
+        box-shadow: 0 0 22px rgba(34, 211, 238, 0.2);
+        outline: none;
+      }
+
+      .hero-scroll-cue span {
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-3px) rotate(45deg);
+        animation: hero-scroll-pulse 1.6s ease-in-out infinite;
+      }
+
+      @keyframes hero-scroll-pulse {
+        0%, 100% { transform: translateY(-4px) rotate(45deg); opacity: 0.58; }
+        50% { transform: translateY(3px) rotate(45deg); opacity: 1; }
+      }
+
       .scene-wrap {
         position: absolute;
         inset: -12% -10%;
@@ -840,6 +881,7 @@
         gap: 16px;
         align-items: start;
         padding: 18px;
+        scroll-margin-top: 82px;
         border-top: 1px solid var(--line);
         background: linear-gradient(90deg, rgba(34, 211, 238, 0.08), rgba(15, 23, 42, 0.62) 26%, rgba(2, 6, 23, 0.52));
         transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -1165,6 +1207,10 @@
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
         }
+
+        .hero-scroll-cue span {
+          animation: none;
+        }
       }
     </style>
   </head>
@@ -1213,6 +1259,9 @@
         <div class="scene-wrap" aria-label="3D neon information scene">
           <div class="three-scene" id="three-scene" aria-hidden="true"></div>
         </div>
+        <button class="hero-scroll-cue" type="button" data-scroll-to-articles aria-label="前往第一篇文章">
+          <span aria-hidden="true"></span>
+        </button>
       </section>
 
       <section class="section shell" aria-labelledby="rest-title" data-rest-section>
@@ -2284,6 +2333,13 @@
 
       }
 
+      function scrollToFirstArticle() {
+        const firstArticle = document.querySelector("[data-intel-list] .intel-row");
+        if (!firstArticle) return;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        firstArticle.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      }
+
       function initFallbackScene(container) {
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
@@ -2443,15 +2499,22 @@
           return;
         }
 
+        if (event.target.closest("[data-scroll-to-articles]")) {
+          scrollToFirstArticle();
+          return;
+        }
+
         if (event.target.closest("[data-page-prev]")) {
           state.page -= 1;
           renderStories();
+          scrollToFirstArticle();
           return;
         }
 
         if (event.target.closest("[data-page-next]")) {
           state.page += 1;
           renderStories();
+          scrollToFirstArticle();
           return;
         }
 
