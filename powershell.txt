@@ -1,0 +1,5 @@
+cd C:\Users\Mi\Documents\codex自動化\ai-news-daily
+python -m http.server 8000
+
+然後開啟：
+http://localhost:8000/

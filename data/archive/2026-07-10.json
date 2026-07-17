@@ -1,0 +1,26 @@
+﻿{
+    "date":  "2026-07-10",
+    "trendSummary":  "2026-07-10 只整理 1 則當日值得追蹤的 AI 更新，不用舊聞湊數。",
+    "items":  [
+                  {
+                      "id":  "2026-07-10-anthropic-cmek-preserve-events",
+                      "rank":  1,
+                      "title":  "Claude Platform 補強 CMEK Content Preservation 與 Access Transparency 文件",
+                      "brand":  "Anthropic",
+                      "product":  "Claude Platform",
+                      "publishedAt":  "2026-07-10",
+                      "importance":  "medium",
+                      "status":  "released",
+                      "categories":  [
+                                         "AI Agent",
+                                         "前端開發"
+                                     ],
+                      "summary":  "Anthropic 更新 Access Transparency 文件，補充 cmek_preserve 事件 filter 範例、payload 範例與 preservation reason code。",
+                      "improvement":  "企業可更清楚追蹤內容保留事件是由人工審查或自動安全流程觸發。",
+                      "workImpact":  "如果公司把 Claude 接進內部 agent、客服工具或設計資料流程，安全與法務更容易審查資料保留原因，前端也能依照治理需求顯示更清楚的紀錄與稽核狀態。",
+                      "sourceName":  "Claude Platform Release Notes",
+                      "sourceUrl":  "https://docs.anthropic.com/en/release-notes/overview",
+                      "isOfficialSource":  true
+                  }
+              ]
+}

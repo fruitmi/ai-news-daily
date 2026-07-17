@@ -1,0 +1,48 @@
+{
+  "date": "2026-07-13",
+  "trendSummary": "2026-07-13 整理 2 則值得追蹤的 AI 更新：一則是 GPT-5.6 成本效能的新獨立分析，另一則聚焦企業使用 AI 時的知識與資料所有權風險。",
+  "items": [
+    {
+      "id": "2026-07-13-gpt-56-intelligence-cost-analysis",
+      "rank": 1,
+      "title": "獨立測試顯示 GPT-5.6 Luna 是成本敏感工作流的突出選擇",
+      "brand": "Artificial Analysis",
+      "product": "GPT-5.6 Sol / Terra / Luna",
+      "publishedAt": "2026-07-13",
+      "importance": "high",
+      "status": "released",
+      "categories": [
+        "OpenAI API",
+        "AI Agent",
+        "前端開發"
+      ],
+      "summary": "Artificial Analysis 發布新的成本效能比較：在其 Intelligence Index 的各推理強度下，GPT-5.6 Sol 與 Luna 都比 Terra 更接近成本效益前緣，其中 Luna 特別適合大量、成本敏感的工作。這是單一獨立評測，不等於所有任務的通用結論。",
+      "improvement": "團隊現在能用每項任務的成本與品質一起選模型，而不是直覺把中階 Terra 當成固定預設；簡單工作可優先測 Luna，只有品質檢查未通過時再升級到 Sol。",
+      "workImpact": "前端團隊可把大量 alt 文字、元件分類、內容格式化與初步 UI 檢查交給 Luna，再把跨檔案重構或複雜除錯交給 Sol；正式切換前仍應用自己的 repo、設計系統與驗收案例做 eval。",
+      "sourceName": "Artificial Analysis",
+      "sourceUrl": "https://artificialanalysis.ai/articles/gpt-5-6-intelligence-vs-cost-across-sol-terra-luna",
+      "isOfficialSource": false
+    },
+    {
+      "id": "2026-07-13-nadella-reverse-information-paradox",
+      "rank": 2,
+      "title": "Satya Nadella 警告：導入 AI 也要保住企業自己的知識回饋",
+      "brand": "Microsoft",
+      "product": "Enterprise AI architecture",
+      "publishedAt": "2026-07-13",
+      "importance": "medium",
+      "status": "unverified",
+      "categories": [
+        "AI Agent",
+        "前端開發",
+        "UI/UX"
+      ],
+      "summary": "TechCrunch 報導 Satya Nadella 提出的「反向資訊悖論」：企業除了支付模型費用，也可能在提示、工具軌跡、修正與評測中交出難以取代的內部知識。這是治理與架構主張，不是 Microsoft 新產品發布。",
+      "improvement": "這個觀點把 AI 治理從保護原始資料，推進到保護提示、修正、評測與代理執行紀錄；系統若採模型無關的路由層，也更容易換供應商、控制成本並降低單一模型鎖定。",
+      "workImpact": "前端與設計團隊可把客戶資料、設計 token、內部元件規則和人工修正留在自有資料層，並以 gateway 管理模型與 fallback；做 UX 研究摘要或程式代理前，也應先定義哪些內容不得送往外部模型。",
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/07/13/satya-nadella-has-issued-a-shocking-warning-to-companies-using-ai/",
+      "isOfficialSource": false
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "articleId": "2026-07-09-openai-chatgpt-work-desktop",
+  "date": "2026-07-09",
+  "title": "ChatGPT Work 與新版桌面 App 把 Chat、Work、Codex 放進同一工作介面",
+  "updatedAt": "2026-07-12T12:49:28.226Z",
+  "contentHtml": "測試筆記<div><br></div><div>這是寫入 JSON 的本機筆記測試。這段內容應該被保存到專案檔案。</div>",
+  "contentText": "測試筆記\n\n這是寫入 JSON 的本機筆記測試。這段內容應該被保存到專案檔案。",
+  "tags": [
+    "AI Agent",
+    "前端開發",
+    "UI/UX"
+  ],
+  "references": [
+    {
+      "label": "OpenAI ChatGPT Release Notes",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+    }
+  ]
+}

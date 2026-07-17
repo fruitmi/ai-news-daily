@@ -1,0 +1,27 @@
+﻿{
+    "date":  "2026-07-11",
+    "trendSummary":  "2026-07-11 只整理 1 則當日值得追蹤的 AI 更新，不用舊聞湊數。",
+    "items":  [
+                  {
+                      "id":  "2026-07-11-ai-announcement-roundup",
+                      "rank":  1,
+                      "title":  "媒體整理 72 小時內多家 AI 公司密集發布，OpenAI 工作流更新最影響設計與前端",
+                      "brand":  "Business Insider",
+                      "product":  "AI industry",
+                      "publishedAt":  "2026-07-11",
+                      "importance":  "medium",
+                      "status":  "unverified",
+                      "categories":  [
+                                         "AI Agent",
+                                         "前端開發",
+                                         "UI/UX"
+                                     ],
+                      "summary":  "Business Insider 整理 OpenAI GPT-Live、GPT-5.6、ChatGPT Work、Atlas 退場，以及其他公司模型與 agent 動態。這是媒體綜整，不取代官方來源。",
+                      "improvement":  "把分散的產品公告放在同一脈絡下看：AI 正從單點模型能力競賽轉向工作流、agent、語音與企業導入。",
+                      "workImpact":  "讀者可以把這波更新理解成一個趨勢：工具正在把研究、產出、改碼、發布和語音協作合併，前端與設計工作會更需要定義交付標準與審查流程。",
+                      "sourceName":  "Business Insider",
+                      "sourceUrl":  "https://www.businessinsider.com/new-ai-model-announcements-openai-meta-grok-2026-7",
+                      "isOfficialSource":  false
+                  }
+              ]
+}

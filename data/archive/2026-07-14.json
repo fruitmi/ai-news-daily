@@ -1,0 +1,110 @@
+{
+  "date": "2026-07-14",
+  "trendSummary": "2026-07-14 整理 5 則值得追蹤的 AI 更新：開發端開始把 AI 安全檢查前移到本地修改與 Pull Request，視覺與內容工具則進一步整合搜尋、生成、翻譯與精修。",
+  "items": [
+    {
+      "id": "2026-07-14-github-ai-security-review",
+      "rank": 1,
+      "title": "GitHub 把 AI 安全檢查帶進 Copilot App 與 Pull Request",
+      "brand": "GitHub",
+      "product": "GitHub Copilot / Code Scanning",
+      "publishedAt": "2026-07-14",
+      "importance": "high",
+      "status": "testing",
+      "categories": [
+        "前端開發",
+        "AI Agent"
+      ],
+      "summary": "GitHub 同日推出兩條 AI 安全檢查路徑：Copilot App 的 `/security-review` 可掃描手邊尚未提交的修改；GitHub Code Security 則能在 Pull Request 顯示 AI 偵測結果，補足部分 CodeQL 尚未涵蓋的語言與框架。兩者都在公開預覽，PR 偵測另需企業政策、CodeQL default setup、Copilot 授權與 AI credits。",
+      "improvement": "安全檢查從合併後才集中處理，前移成開發中的隨手掃描與 PR 自動提示；結果會標示嚴重度、信心分數與可採取的修正方向，團隊能更早縮小需要人工複核的範圍。",
+      "workImpact": "前端工程師可在送出 PR 前先掃 XSS、注入、不安全資料處理與路徑穿越等問題；小型專案可用 Copilot App 指令快速自查，企業 repo 再把 PR 偵測接進既有 code scanning 流程，但仍要以測試、CodeQL 與人工 review 驗證誤報。",
+      "sourceName": "GitHub Changelog",
+      "sourceUrl": "https://github.blog/changelog/2026-07-14-security-reviews-now-available-in-the-github-copilot-app/",
+      "isOfficialSource": true
+    },
+    {
+      "id": "2026-07-14-google-images-ai-redesign",
+      "rank": 2,
+      "title": "Google Images 改成探索式圖庫，並把 AI 生圖帶進搜尋",
+      "brand": "Google",
+      "product": "Google Images / AI Overviews",
+      "publishedAt": "2026-07-14",
+      "importance": "high",
+      "status": "released",
+      "categories": [
+        "圖片生成",
+        "平面設計",
+        "UI/UX",
+        "網頁設計"
+      ],
+      "summary": "Google Images 新首頁改為會依興趣即時更新的「For You」視覺圖庫，並保留 Collections 讓使用者整理靈感；搜尋的 AI Overviews 也將用 Nano Banana 直接依文字生成找不到的畫面。圖庫先在美國英文桌面版逐步推出，搜尋內生圖則會在已支援 AI Mode 生圖的英文地區陸續上線。",
+      "improvement": "找參考圖、連續瀏覽、收藏靈感與把具體想法轉成示意圖，開始能在同一條搜尋流程完成，減少在圖片搜尋、靈感板和生圖工具之間來回切換。",
+      "workImpact": "UI/UX 與平面設計師可用動態圖庫快速建立視覺方向，再用搜尋內生圖測試配色、空間或版面概念；正式採用前仍要回查原圖來源與授權，並把 AI 生成內容和可授權素材分開管理。",
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/07/14/google-images-gets-a-pinterest-like-redesign-focused-on-discovery/",
+      "isOfficialSource": false
+    },
+    {
+      "id": "2026-07-14-chatgpt-unified-search",
+      "rank": 3,
+      "title": "ChatGPT 全域搜尋一次找回聊天、專案、圖片與文件",
+      "brand": "OpenAI",
+      "product": "ChatGPT Search / Library",
+      "publishedAt": "2026-07-14",
+      "importance": "high",
+      "status": "released",
+      "categories": [
+        "AI Agent",
+        "UI/UX",
+        "前端開發"
+      ],
+      "summary": "ChatGPT 在網頁、iOS 與 Android 推出整合搜尋，側欄可從同一處查找過往聊天、Projects、生成圖片與文件，並用內容類型篩選後直接開啟結果。功能已向全球所有 ChatGPT 方案開放。",
+      "improvement": "過去分散在對話紀錄、專案、Images 與 Library 的資料，現在能用一個入口定位；回找規格、生成圖或舊分析時，不必先猜它被放在哪個區域。",
+      "workImpact": "前端與設計團隊可用專案名、元件名或活動關鍵字快速找回舊 wireframe、需求討論、研究文件與生成素材，再接續修改；為提高命中率，仍應替專案與檔案使用穩定命名，並注意搜尋便利不等於自動整理版本。",
+      "sourceName": "OpenAI ChatGPT Release Notes",
+      "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "isOfficialSource": true
+    },
+    {
+      "id": "2026-07-14-meta-reels-ai-translation-languages",
+      "rank": 4,
+      "title": "Instagram Reels AI 翻譯新增法德義日韓五種語言",
+      "brand": "Meta",
+      "product": "Instagram Reels / Meta AI Translation",
+      "publishedAt": "2026-07-14",
+      "importance": "medium",
+      "status": "released",
+      "categories": [
+        "影片生成",
+        "平面設計",
+        "UI/UX"
+      ],
+      "summary": "Meta 在 7 月 14 日更新 Reels AI 翻譯，Instagram 新增法文、德文、義大利文、日文與韓文。系統可模擬創作者語氣完成翻譯與配音，並可選擇嘴型同步；翻譯內容會標示由 Meta AI 處理，實際資格仍受帳號公開狀態與 Meta AI 可用地區限制。",
+      "improvement": "同一支短影音可直接延伸到更多語言市場，不必先為每種語言各自錄音與重剪嘴型；創作者仍可保留原始音訊，觀眾也能切回原語言。",
+      "workImpact": "品牌與平面設計團隊可用同一套主視覺與 Reels 版型測試多語市場，把人力集中在字幕斷行、品牌詞、產品名與文化語境複核；日文或韓文版本尤其要人工確認語氣、敬語與畫面文字是否同步。",
+      "sourceName": "Meta Newsroom",
+      "sourceUrl": "https://about.fb.com/news/2025/10/discover-reels-around-world-meta-ai-translation/",
+      "isOfficialSource": true
+    },
+    {
+      "id": "2026-07-14-gmail-custom-refine",
+      "rank": 5,
+      "title": "Gmail「幫我寫」可用自訂指令精修草稿",
+      "brand": "Google",
+      "product": "Gemini in Gmail / Help me write",
+      "publishedAt": "2026-07-14",
+      "importance": "medium",
+      "status": "released",
+      "categories": [
+        "AI Agent",
+        "UI/UX"
+      ],
+      "summary": "Gmail 的 Help me write 不再只提供「潤飾、正式、縮短」等固定選項，現在可在提示列輸入自訂修改要求，例如補上第二行遺漏資訊或加入期限，也能復原與重做。功能正分批推出，預計 7 月 20 日完成，支援多個 Workspace、Google AI 與教育方案。",
+      "improvement": "使用者可以針對草稿局部下指令，不必為一個細節重寫整封信，也能用 undo／redo 比較修改前後，降低反覆複製文字到外部 AI 工具的手工步驟。",
+      "workImpact": "前端、UI/UX 與設計團隊可在寄送交付信、設計 review 或客戶變更說明前，直接要求補上 deadline、驗收範圍或更清楚的行動項目；仍應人工確認名稱、日期、連結與承諾，避免 AI 改動關鍵條件。",
+      "sourceName": "Google Workspace Updates",
+      "sourceUrl": "https://workspaceupdates.googleblog.com/2026/07/new-refinement-capabilities-allow-custom-editing-with-Help-me-write-in-Gmail.html",
+      "isOfficialSource": true
+    }
+  ]
+}
