@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI 每日新聞</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14/swiper-bundle.min.css">
     <style>
       :root {
         color-scheme: dark;
@@ -1340,18 +1341,19 @@
       }
 
       .article-pagination {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
         border-top: 1px solid rgba(34, 211, 238, 0.2);
         padding-top: clamp(20px, 3vw, 28px);
       }
 
       .article-pagination-link {
-        display: grid;
-        gap: 7px;
-        min-height: 92px;
-        padding: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
         border: 1px solid rgba(148, 163, 184, 0.24);
         background: rgba(2, 6, 23, 0.68);
         color: var(--text);
@@ -1367,23 +1369,10 @@
         outline: none;
       }
 
-      .article-pagination-link.is-next {
-        text-align: right;
-      }
-
       .article-pagination-label {
         color: var(--cyan);
         font-family: var(--display);
         font-size: 0.76rem;
-      }
-
-      .article-pagination-title {
-        display: -webkit-box;
-        overflow: hidden;
-        font-weight: 700;
-        line-height: 1.45;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
       }
 
       .recommendations {
@@ -1436,34 +1425,21 @@
         opacity: 0.3;
       }
 
-      .recommendation-track {
-        display: flex;
-        gap: 14px;
-        overflow-x: auto;
-        overscroll-behavior-inline: contain;
+      .recommendation-swiper {
+        width: 100%;
+        overflow: hidden;
         padding: 2px 2px 12px;
-        scrollbar-width: thin;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        touch-action: pan-y;
-        cursor: grab;
-      }
-
-      .recommendation-track.is-dragging {
-        cursor: grabbing;
-        scroll-behavior: auto;
-        user-select: none;
       }
 
       .recommendation-card {
-        flex: 0 0 calc((100% - 28px) / 3);
+        display: block;
+        height: auto;
         min-width: 0;
         overflow: hidden;
         border: 1px solid rgba(148, 163, 184, 0.22);
         background: rgba(2, 6, 23, 0.74);
         color: var(--text);
         text-decoration: none;
-        scroll-snap-align: start;
         transition: border-color 160ms ease, transform 160ms ease;
       }
 
@@ -1497,10 +1473,6 @@
         .hero,
         .showcase-shell {
           grid-template-columns: 1fr;
-        }
-
-        .recommendation-card {
-          flex-basis: calc((100% - 14px) / 2);
         }
 
       }
@@ -1542,20 +1514,8 @@
           height: auto;
         }
 
-        .article-pagination {
-          grid-template-columns: 1fr;
-        }
-
-        .article-pagination-link.is-next {
-          text-align: left;
-        }
-
         .recommendation-header {
           align-items: flex-start;
-        }
-
-        .recommendation-card {
-          flex-basis: 100%;
         }
 
         .source-preview-compact {
@@ -1891,6 +1851,7 @@
       }
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@14/swiper-bundle.min.js"></script>
     <script>
       const data = JSON.parse(document.querySelector("#mock-news-data").textContent);
       Object.assign(data, {
@@ -2694,16 +2655,14 @@
 
         const previousMarkup = previousItem
           ? `
-            <a class="article-pagination-link is-previous" href="${escapeHtml(articleHref(previousItem))}">
+            <a class="article-pagination-link is-previous" href="${escapeHtml(articleHref(previousItem))}" aria-label="上一則文章">
               <span class="article-pagination-label">← 上一則</span>
-              <span class="article-pagination-title">${escapeHtml(previousItem.title)}</span>
             </a>`
           : "";
         const nextMarkup = nextItem
           ? `
-            <a class="article-pagination-link is-next" href="${escapeHtml(articleHref(nextItem))}">
+            <a class="article-pagination-link is-next" href="${escapeHtml(articleHref(nextItem))}" aria-label="下一則文章">
               <span class="article-pagination-label">下一則 →</span>
-              <span class="article-pagination-title">${escapeHtml(nextItem.title)}</span>
             </a>`
           : "";
 
@@ -2782,7 +2741,7 @@
       function recommendationCardMarkup(item) {
         const imageUrl = getArticleImageUrl(item);
         return `
-          <a class="recommendation-card" href="${escapeHtml(articleHref(item))}">
+          <a class="recommendation-card swiper-slide" href="${escapeHtml(articleHref(item))}">
             <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}">
             <p class="recommendation-card-title">${escapeHtml(item.title)}</p>
           </a>
@@ -2790,62 +2749,30 @@
       }
 
       function initRecommendationCarousel(section) {
-        const track = section.querySelector("[data-recommendation-track]");
+        const track = section.querySelector("[data-recommendation-swiper]");
         const previousButton = section.querySelector("[data-recommendation-prev]");
         const nextButton = section.querySelector("[data-recommendation-next]");
-        if (!track || !previousButton || !nextButton) return;
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        let startX = 0;
-        let startScrollLeft = 0;
-        let dragged = false;
-
-        const updateButtons = () => {
-          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-          previousButton.disabled = track.scrollLeft <= 2;
-          nextButton.disabled = track.scrollLeft >= maxScroll - 2;
-        };
-        const scrollByPage = (direction) => {
-          track.scrollBy({
-            left: direction * Math.max(track.clientWidth * 0.82, 240),
-            behavior: reduceMotion ? "auto" : "smooth"
-          });
-        };
-
-        previousButton.addEventListener("click", () => scrollByPage(-1));
-        nextButton.addEventListener("click", () => scrollByPage(1));
-        track.addEventListener("scroll", updateButtons, { passive: true });
-        track.addEventListener("keydown", (event) => {
-          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-          event.preventDefault();
-          scrollByPage(event.key === "ArrowLeft" ? -1 : 1);
+        if (!track || !previousButton || !nextButton || typeof Swiper === "undefined") return;
+        new Swiper(track, {
+          slidesPerView: 1,
+          spaceBetween: 14,
+          grabCursor: true,
+          keyboard: {
+            enabled: true
+          },
+          navigation: {
+            prevEl: previousButton,
+            nextEl: nextButton
+          },
+          breakpoints: {
+            721: {
+              slidesPerView: 2
+            },
+            1061: {
+              slidesPerView: 3
+            }
+          }
         });
-        track.addEventListener("pointerdown", (event) => {
-          if (!event.isPrimary) return;
-          startX = event.clientX;
-          startScrollLeft = track.scrollLeft;
-          dragged = false;
-          track.classList.add("is-dragging");
-          track.setPointerCapture(event.pointerId);
-        });
-        track.addEventListener("pointermove", (event) => {
-          if (!track.hasPointerCapture(event.pointerId)) return;
-          const distance = event.clientX - startX;
-          dragged = dragged || Math.abs(distance) > 6;
-          track.scrollLeft = startScrollLeft - distance;
-        });
-        track.addEventListener("pointerup", (event) => {
-          if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
-          track.classList.remove("is-dragging");
-        });
-        track.addEventListener("pointercancel", () => track.classList.remove("is-dragging"));
-        track.addEventListener("click", (event) => {
-          if (!dragged) return;
-          event.preventDefault();
-          event.stopPropagation();
-          dragged = false;
-        }, true);
-        window.addEventListener("resize", updateButtons);
-        updateButtons();
       }
 
       async function renderRecommendations(item) {
@@ -2860,8 +2787,8 @@
         const validItems = validation.filter((result) => result.valid).map((result) => result.item);
         const recommendations = validItems.slice(0, 5);
         if (!recommendations.length) return;
-        const track = section.querySelector("[data-recommendation-track]");
-        track.innerHTML = recommendations.map(recommendationCardMarkup).join("");
+        const wrapper = section.querySelector(".swiper-wrapper");
+        wrapper.innerHTML = recommendations.map(recommendationCardMarkup).join("");
         section.hidden = false;
         initRecommendationCarousel(section);
       }
@@ -2924,7 +2851,9 @@
                   <button class="recommendation-button" type="button" data-recommendation-next aria-label="下一組推薦文章">→</button>
                 </div>
               </div>
-              <div class="recommendation-track" data-recommendation-track tabindex="0" aria-label="可左右滑動的推薦文章"></div>
+              <div class="recommendation-swiper swiper" data-recommendation-swiper aria-label="可左右滑動的推薦文章">
+                <div class="swiper-wrapper"></div>
+              </div>
             </section>
           </article>
         `;

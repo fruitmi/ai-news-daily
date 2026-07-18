@@ -32,10 +32,12 @@ Test-UiRequirement 'Failed image hides its container' (($articleHtml -match 'dat
 Test-UiRequirement 'Global H1 has no max-width restriction' (-not ($articleHtml -match '(?s)h1\s*\{[^}]*max-width:\s*820px'))
 Test-UiRequirement 'Article title uses moderate responsive size' ($articleHtml -match '(?s)\.article-page\s+\.detail-title\s*\{[^}]*font-size:\s*clamp\(1\.4rem,\s*3vw,\s*2\.25rem\)')
 Test-UiRequirement 'Article page defines same-day adjacent navigation' (($articleHtml -match 'function\s+adjacentArticleMarkup\s*\(') -and ($articleHtml -match 'data-article-pagination'))
+Test-UiRequirement 'Adjacent navigation contains no article titles' (-not ($articleHtml -match 'article-pagination-title'))
 Test-UiRequirement 'Recommendations shuffle candidates' (($articleHtml -match 'function\s+shuffleItems\s*\(') -and ($articleHtml -match 'slice\(0,\s*5\)'))
 Test-UiRequirement 'Recommendations validate images before rendering' (($articleHtml -match 'function\s+loadImage\s*\(') -and ($articleHtml -match 'await\s+loadImage\('))
-Test-UiRequirement 'Recommendation carousel uses scroll snap' (($articleHtml -match 'data-recommendation-track') -and ($articleHtml -match 'scroll-snap-type:\s*x\s+mandatory'))
-Test-UiRequirement 'Recommendation carousel has controls' (($articleHtml -match 'data-recommendation-prev') -and ($articleHtml -match 'data-recommendation-next'))
+Test-UiRequirement 'Recommendation carousel loads Swiper bundle' (($articleHtml -match 'swiper@14/swiper-bundle\.min\.css') -and ($articleHtml -match 'swiper@14/swiper-bundle\.min\.js'))
+Test-UiRequirement 'Recommendation carousel uses Swiper structure' (($articleHtml -match 'class="recommendation-swiper swiper"') -and ($articleHtml -match 'class="swiper-wrapper"') -and ($articleHtml -match 'swiper-slide'))
+Test-UiRequirement 'Recommendation carousel initializes Swiper' (($articleHtml -match 'new\s+Swiper\(') -and ($articleHtml -match 'slidesPerView:\s*1') -and ($articleHtml -match 'breakpoints:'))
 
 if ($failures.Count -gt 0) {
   Write-Error "$($failures.Count) checks failed."
