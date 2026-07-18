@@ -222,7 +222,6 @@
       }
 
       h1 {
-        max-width: 820px;
         margin: 14px auto 20px;
         font-family: var(--display);
         font-size: clamp(2rem, 5.2vw, 4.2rem);
@@ -908,7 +907,6 @@
       }
 
       .detail-title {
-        max-width: 900px;
         margin: 12px 0 0;
         font-family: var(--display);
         font-size: clamp(1.35rem, 2.4vw, 2.2rem);
@@ -916,7 +914,6 @@
       }
 
       .detail-summary {
-        max-width: 780px;
         margin: 0;
         color: #dbe7fa;
         font-size: 1.05rem;
@@ -1268,14 +1265,12 @@
       }
 
       .article-page .detail-title {
-        max-width: 920px;
         margin: 10px 0 0;
-        font-size: clamp(1.65rem, 4vw, 3rem);
+        font-size: clamp(1.4rem, 3vw, 2.25rem);
         line-height: 1.15;
       }
 
       .article-page .detail-summary {
-        max-width: 780px;
         color: #e5eefc;
         font-size: clamp(1.03rem, 1.45vw, 1.18rem);
       }
@@ -1306,7 +1301,9 @@
       .article-visual img {
         display: block;
         width: 100%;
+        max-width: 1000px;
         height: 100%;
+        margin-inline: auto;
         object-fit: cover;
       }
 
@@ -1320,7 +1317,6 @@
       }
 
       .article-page .detail-block p {
-        max-width: 780px;
         font-size: 1.02rem;
         line-height: 1.76;
       }
@@ -1343,10 +1339,168 @@
         background: rgba(15, 23, 42, 0.62);
       }
 
+      .article-pagination {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        border-top: 1px solid rgba(34, 211, 238, 0.2);
+        padding-top: clamp(20px, 3vw, 28px);
+      }
+
+      .article-pagination-link {
+        display: grid;
+        gap: 7px;
+        min-height: 92px;
+        padding: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        background: rgba(2, 6, 23, 0.68);
+        color: var(--text);
+        text-decoration: none;
+        transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+      }
+
+      .article-pagination-link:hover,
+      .article-pagination-link:focus-visible {
+        border-color: var(--cyan);
+        background: rgba(8, 47, 73, 0.48);
+        transform: translateY(-2px);
+        outline: none;
+      }
+
+      .article-pagination-link.is-next {
+        text-align: right;
+      }
+
+      .article-pagination-label {
+        color: var(--cyan);
+        font-family: var(--display);
+        font-size: 0.76rem;
+      }
+
+      .article-pagination-title {
+        display: -webkit-box;
+        overflow: hidden;
+        font-weight: 700;
+        line-height: 1.45;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .recommendations {
+        display: grid;
+        gap: 16px;
+        border-top: 1px solid rgba(34, 211, 238, 0.2);
+        padding-top: clamp(22px, 4vw, 34px);
+      }
+
+      .recommendations[hidden] {
+        display: none;
+      }
+
+      .recommendation-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .recommendation-title {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(1.15rem, 2vw, 1.5rem);
+      }
+
+      .recommendation-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .recommendation-button {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(34, 211, 238, 0.34);
+        background: rgba(2, 6, 23, 0.78);
+        color: var(--cyan);
+        cursor: pointer;
+      }
+
+      .recommendation-button:hover:not(:disabled),
+      .recommendation-button:focus-visible {
+        border-color: var(--cyan);
+        background: rgba(8, 47, 73, 0.58);
+        outline: none;
+      }
+
+      .recommendation-button:disabled {
+        cursor: default;
+        opacity: 0.3;
+      }
+
+      .recommendation-track {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        padding: 2px 2px 12px;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        touch-action: pan-y;
+        cursor: grab;
+      }
+
+      .recommendation-track.is-dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+        user-select: none;
+      }
+
+      .recommendation-card {
+        flex: 0 0 calc((100% - 28px) / 3);
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        background: rgba(2, 6, 23, 0.74);
+        color: var(--text);
+        text-decoration: none;
+        scroll-snap-align: start;
+        transition: border-color 160ms ease, transform 160ms ease;
+      }
+
+      .recommendation-card:hover,
+      .recommendation-card:focus-visible {
+        border-color: var(--cyan);
+        transform: translateY(-2px);
+        outline: none;
+      }
+
+      .recommendation-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        object-fit: cover;
+      }
+
+      .recommendation-card-title {
+        display: -webkit-box;
+        min-height: 4.2em;
+        margin: 0;
+        overflow: hidden;
+        padding: 13px 14px 15px;
+        font-weight: 700;
+        line-height: 1.5;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
       @media (max-width: 1060px) {
         .hero,
         .showcase-shell {
           grid-template-columns: 1fr;
+        }
+
+        .recommendation-card {
+          flex-basis: calc((100% - 14px) / 2);
         }
 
       }
@@ -1386,6 +1540,22 @@
 
         .article-visual {
           height: auto;
+        }
+
+        .article-pagination {
+          grid-template-columns: 1fr;
+        }
+
+        .article-pagination-link.is-next {
+          text-align: left;
+        }
+
+        .recommendation-header {
+          align-items: flex-start;
+        }
+
+        .recommendation-card {
+          flex-basis: 100%;
         }
 
         .source-preview-compact {
@@ -2510,6 +2680,192 @@
         `;
       }
 
+      function articleHref(item) {
+        return `article.html?date=${encodeURIComponent(item.publishedAt)}&id=${encodeURIComponent(item.id)}`;
+      }
+
+      function adjacentArticleMarkup(item) {
+        const orderedItems = [...data.items].sort((a, b) => Number(a.rank) - Number(b.rank));
+        const currentIndex = orderedItems.findIndex((candidate) => candidate.id === item.id);
+        if (currentIndex < 0) return "";
+        const previousItem = orderedItems[currentIndex - 1];
+        const nextItem = orderedItems[currentIndex + 1];
+        if (!previousItem && !nextItem) return "";
+
+        const previousMarkup = previousItem
+          ? `
+            <a class="article-pagination-link is-previous" href="${escapeHtml(articleHref(previousItem))}">
+              <span class="article-pagination-label">← 上一則</span>
+              <span class="article-pagination-title">${escapeHtml(previousItem.title)}</span>
+            </a>`
+          : "";
+        const nextMarkup = nextItem
+          ? `
+            <a class="article-pagination-link is-next" href="${escapeHtml(articleHref(nextItem))}">
+              <span class="article-pagination-label">下一則 →</span>
+              <span class="article-pagination-title">${escapeHtml(nextItem.title)}</span>
+            </a>`
+          : "";
+
+        return `<nav class="article-pagination" data-article-pagination aria-label="同日文章導覽">${previousMarkup}${nextMarkup}</nav>`;
+      }
+
+      function shuffleItems(items) {
+        const shuffled = [...items];
+        for (let index = shuffled.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+        }
+        return shuffled;
+      }
+
+      function offsetArticleDate(value, days) {
+        const date = new Date(`${value}T00:00:00Z`);
+        date.setUTCDate(date.getUTCDate() + days);
+        return date.toISOString().slice(0, 10);
+      }
+
+      async function loadRecommendationReports() {
+        const reports = new Map(embeddedReports);
+        reports.set(data.date, { date: data.date, items: [...data.items] });
+        const embeddedDates = Array.from(embeddedReports.keys()).sort();
+        const firstDate = embeddedDates[0] || data.date;
+        const dates = [];
+        let cursor = firstDate;
+        while (cursor <= data.date) {
+          dates.push(cursor);
+          cursor = offsetArticleDate(cursor, 1);
+        }
+
+        await Promise.all(dates.map(async (date) => {
+          try {
+            const response = await fetch(`data/archive/${date}.json`, { cache: "no-store" });
+            if (!response.ok) return;
+            const report = await response.json();
+            reports.set(report.date || date, report);
+          } catch {
+            // Local file previews cannot always fetch archives; embedded reports remain available.
+          }
+        }));
+        return Array.from(reports.values());
+      }
+
+      async function collectRecommendationCandidates(item) {
+        const reports = await loadRecommendationReports();
+        const uniqueItems = new Map();
+        reports.forEach((report) => {
+          (report.items || []).forEach((candidate) => {
+            if (candidate.id === item.id || uniqueItems.has(candidate.id)) return;
+            if (!getArticleImageUrl(candidate)) return;
+            uniqueItems.set(candidate.id, candidate);
+          });
+        });
+        return shuffleItems(Array.from(uniqueItems.values()));
+      }
+
+      function loadImage(url) {
+        return new Promise((resolve) => {
+          const image = new Image();
+          const timeout = window.setTimeout(() => resolve(false), 5000);
+          image.onload = () => {
+            window.clearTimeout(timeout);
+            resolve(true);
+          };
+          image.onerror = () => {
+            window.clearTimeout(timeout);
+            resolve(false);
+          };
+          image.src = url;
+        });
+      }
+
+      function recommendationCardMarkup(item) {
+        const imageUrl = getArticleImageUrl(item);
+        return `
+          <a class="recommendation-card" href="${escapeHtml(articleHref(item))}">
+            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(item.title)}">
+            <p class="recommendation-card-title">${escapeHtml(item.title)}</p>
+          </a>
+        `;
+      }
+
+      function initRecommendationCarousel(section) {
+        const track = section.querySelector("[data-recommendation-track]");
+        const previousButton = section.querySelector("[data-recommendation-prev]");
+        const nextButton = section.querySelector("[data-recommendation-next]");
+        if (!track || !previousButton || !nextButton) return;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let startX = 0;
+        let startScrollLeft = 0;
+        let dragged = false;
+
+        const updateButtons = () => {
+          const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+          previousButton.disabled = track.scrollLeft <= 2;
+          nextButton.disabled = track.scrollLeft >= maxScroll - 2;
+        };
+        const scrollByPage = (direction) => {
+          track.scrollBy({
+            left: direction * Math.max(track.clientWidth * 0.82, 240),
+            behavior: reduceMotion ? "auto" : "smooth"
+          });
+        };
+
+        previousButton.addEventListener("click", () => scrollByPage(-1));
+        nextButton.addEventListener("click", () => scrollByPage(1));
+        track.addEventListener("scroll", updateButtons, { passive: true });
+        track.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          scrollByPage(event.key === "ArrowLeft" ? -1 : 1);
+        });
+        track.addEventListener("pointerdown", (event) => {
+          if (!event.isPrimary) return;
+          startX = event.clientX;
+          startScrollLeft = track.scrollLeft;
+          dragged = false;
+          track.classList.add("is-dragging");
+          track.setPointerCapture(event.pointerId);
+        });
+        track.addEventListener("pointermove", (event) => {
+          if (!track.hasPointerCapture(event.pointerId)) return;
+          const distance = event.clientX - startX;
+          dragged = dragged || Math.abs(distance) > 6;
+          track.scrollLeft = startScrollLeft - distance;
+        });
+        track.addEventListener("pointerup", (event) => {
+          if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+          track.classList.remove("is-dragging");
+        });
+        track.addEventListener("pointercancel", () => track.classList.remove("is-dragging"));
+        track.addEventListener("click", (event) => {
+          if (!dragged) return;
+          event.preventDefault();
+          event.stopPropagation();
+          dragged = false;
+        }, true);
+        window.addEventListener("resize", updateButtons);
+        updateButtons();
+      }
+
+      async function renderRecommendations(item) {
+        const section = detailContent.querySelector("[data-recommendations]");
+        if (!section) return;
+        const candidates = await collectRecommendationCandidates(item);
+        const validation = await Promise.all(candidates.map(async (candidate) => ({
+          item: candidate,
+          valid: await loadImage(getArticleImageUrl(candidate))
+        })));
+        if (!currentArticle || currentArticle.id !== item.id) return;
+        const validItems = validation.filter((result) => result.valid).map((result) => result.item);
+        const recommendations = validItems.slice(0, 5);
+        if (!recommendations.length) return;
+        const track = section.querySelector("[data-recommendation-track]");
+        track.innerHTML = recommendations.map(recommendationCardMarkup).join("");
+        section.hidden = false;
+        initRecommendationCarousel(section);
+      }
+
       function detailMarkup(item) {
         const resources = relatedResources[item.id] || [];
         const official = {
@@ -2559,6 +2915,17 @@
               </div>
               <div class="note-display-body" data-note-display-body></div>
             </section>
+            ${adjacentArticleMarkup(item)}
+            <section class="recommendations" hidden data-recommendations aria-labelledby="recommendation-title">
+              <div class="recommendation-header">
+                <h2 class="recommendation-title" id="recommendation-title">推薦文章</h2>
+                <div class="recommendation-controls" aria-label="推薦文章輪播控制">
+                  <button class="recommendation-button" type="button" data-recommendation-prev aria-label="上一組推薦文章">←</button>
+                  <button class="recommendation-button" type="button" data-recommendation-next aria-label="下一組推薦文章">→</button>
+                </div>
+              </div>
+              <div class="recommendation-track" data-recommendation-track tabindex="0" aria-label="可左右滑動的推薦文章"></div>
+            </section>
           </article>
         `;
       }
@@ -2577,6 +2944,7 @@
           });
           document.title = `${item.title}｜AI 每日新聞`;
           refreshArticleNote(item);
+          renderRecommendations(item);
         }
         detailView.hidden = false;
         detailView.scrollIntoView({ behavior: "smooth", block: "start" });

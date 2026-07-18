@@ -29,6 +29,13 @@ Test-UiRequirement 'Article page derives dated TOP3 images' ($articleHtml -match
 Test-UiRequirement 'Article image max width is 1000px' ($articleHtml -match '(?s)\.article-visual\s*\{.*?width:\s*min\(100%,\s*1000px\)')
 Test-UiRequirement 'Article image is centered' ($articleHtml -match '(?s)\.article-visual\s*\{.*?margin-inline:\s*auto')
 Test-UiRequirement 'Failed image hides its container' (($articleHtml -match 'data-article-image') -and ($articleHtml -match 'closest\("\.article-visual"\)[\s\S]*?hidden\s*=\s*true'))
+Test-UiRequirement 'Global H1 has no max-width restriction' (-not ($articleHtml -match '(?s)h1\s*\{[^}]*max-width:\s*820px'))
+Test-UiRequirement 'Article title uses moderate responsive size' ($articleHtml -match '(?s)\.article-page\s+\.detail-title\s*\{[^}]*font-size:\s*clamp\(1\.4rem,\s*3vw,\s*2\.25rem\)')
+Test-UiRequirement 'Article page defines same-day adjacent navigation' (($articleHtml -match 'function\s+adjacentArticleMarkup\s*\(') -and ($articleHtml -match 'data-article-pagination'))
+Test-UiRequirement 'Recommendations shuffle candidates' (($articleHtml -match 'function\s+shuffleItems\s*\(') -and ($articleHtml -match 'slice\(0,\s*5\)'))
+Test-UiRequirement 'Recommendations validate images before rendering' (($articleHtml -match 'function\s+loadImage\s*\(') -and ($articleHtml -match 'await\s+loadImage\('))
+Test-UiRequirement 'Recommendation carousel uses scroll snap' (($articleHtml -match 'data-recommendation-track') -and ($articleHtml -match 'scroll-snap-type:\s*x\s+mandatory'))
+Test-UiRequirement 'Recommendation carousel has controls' (($articleHtml -match 'data-recommendation-prev') -and ($articleHtml -match 'data-recommendation-next'))
 
 if ($failures.Count -gt 0) {
   Write-Error "$($failures.Count) checks failed."
