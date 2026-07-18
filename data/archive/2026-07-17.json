@@ -11,10 +11,7 @@
       "publishedAt": "2026-07-17",
       "importance": "high",
       "status": "released",
-      "categories": [
-        "AI Agent",
-        "前端開發"
-      ],
+      "categories": ["AI Agent", "前端開發"],
       "summary": "Copilot code review 現在會從 Pull Request 的 head branch 讀取審查規則，團隊可在合併前測試 AGENTS.md、copilot-instructions.md 與 skills；它也新增 REVIEW.md、GEMINI.md、CLAUDE.md 支援、專用 copilot-code-review.yml 準備步驟、預設啟用的網路防火牆，以及與 cloud agent 分開的 runner 設定。",
       "improvement": "審查規則不必先進入主分支才能驗證，依賴安裝、測試工具與網路權限也能針對 code review 單獨管理，減少規則改錯後影響所有 PR，或 agent 因環境不足而給出空泛建議的情況。",
       "workImpact": "前端團隊可在功能分支加入元件命名、設計 token、無障礙、瀏覽器相容性與測試要求，再讓 Copilot 依同一分支內容審查；若需要安裝 lint、型別或視覺測試工具，可放進專用 setup，但仍要限制外網、保護 secrets，並由人工確認建議。",
@@ -31,11 +28,7 @@
       "publishedAt": "2026-07-17",
       "importance": "high",
       "status": "released",
-      "categories": [
-        "AI Agent",
-        "前端開發",
-        "UI/UX"
-      ],
+      "categories": ["AI Agent", "前端開發", "UI/UX"],
       "summary": "最新版 GitHub Mobile 在 Pull Request 主畫面與個別 Copilot code review 留言加入 Fix with Copilot，點一下即可讓 cloud agent 著手處理意見，不必先手動整理提示。功能已在 iOS 與 Android 正式版提供。",
       "improvement": "離開電腦時也能把明確的 review comment 直接轉成修正任務，省下複製留言、重述問題與另開 agent 工作階段的步驟，讓小型修正更快進入可檢查的 PR 流程。",
       "workImpact": "前端工程師可在手機上先處理文案、樣式、型別或測試缺漏等清楚意見，回到桌面後再檢查 diff、跑瀏覽器與視覺測試；涉及架構、資料安全或模糊 UX 判斷的留言仍不適合一鍵接受。",
@@ -52,10 +45,7 @@
       "publishedAt": "2026-07-17",
       "importance": "medium",
       "status": "released",
-      "categories": [
-        "AI Agent",
-        "前端開發"
-      ],
+      "categories": ["AI Agent", "前端開發"],
       "summary": "Copilot usage metrics REST API 的 repository-level 報告正式上線，可按日查看各 repo 中 coding agent 建立與合併的 PR、code review 審過的 PR 與建議類型；同日也新增 Copilot app 的活躍使用者、session、request、prompt 與 token 用量欄位。",
       "improvement": "管理者不再只能看組織或個人總量，現在能找出 Copilot 真正在哪些程式庫產生 PR、審查與 app 使用，並把採用狀況和需要培訓或調整規則的 repo 對上。",
       "workImpact": "前端主管可把每日 repo 報告接進內部儀表板，比較 agent PR 合併率、review 建議與 app 用量，再搭配測試通過率、回滾、缺陷和人工修改量判斷價值；不要只用 prompt、token 或 PR 數量當成生產力。",
@@ -72,11 +62,7 @@
       "publishedAt": "2026-07-17",
       "importance": "medium",
       "status": "announced",
-      "categories": [
-        "AI Agent",
-        "前端開發",
-        "UI/UX"
-      ],
+      "categories": ["AI Agent", "前端開發", "UI/UX"],
       "summary": "OpenAI 提出 Useful Intelligence per Dollar 評估框架，主張 AI 投資應追蹤完成了多少有用工作、每個成功任務的完整成本、結果是否可直接使用，以及規模擴大後價值是否成長；完整成本要包含重試、延遲、人工複核與返工，不只看每 token 價格。",
       "improvement": "這套框架把模型比較從單次 benchmark 或便宜 token，改成 ready to use、needs correction、needs escalation 三種實際結果，讓團隊能看出較強模型是否因少重試、少人工修改而反而更省。",
       "workImpact": "前端與設計團隊可先替一條工作流定義 done，例如程式修改需通過測試、UI 草稿需符合元件與無障礙規則，再記錄一次可用率、人工修正時間與升級處理比例；這是 OpenAI 提出的管理框架，不是獨立第三方 benchmark，仍需用自家專案驗證。",
