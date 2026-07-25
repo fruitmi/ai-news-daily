@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI 每日新聞</title>
+    <title>AI 情報資訊艙</title>
     <style>
       :root {
         color-scheme: dark;
@@ -131,15 +131,14 @@
       }
 
       .brand-sigil {
-        display: grid;
+        position: relative;
+        display: block;
+        flex: 0 0 auto;
         width: 40px;
         height: 40px;
-        place-items: center;
+        overflow: hidden;
         border: 1px solid var(--line-strong);
-        color: var(--cyan);
-        font-family: var(--display);
-        font-size: 13px;
-        letter-spacing: 0;
+        background: rgba(2, 6, 23, 0.86);
         box-shadow: var(--shadow-cyan);
         clip-path: polygon(12% 0, 100% 0, 100% 76%, 84% 100%, 0 100%, 0 22%);
       }
@@ -194,38 +193,7 @@
         transform: none;
       }
 
-      .hero {
-        position: relative;
-        display: grid;
-        place-items: center;
-        width: 100%;
-        overflow: hidden;
-        padding: clamp(48px, 7vw, 88px) max(16px, 4vw) 40px;
-        isolation: isolate;
-      }
-
-      .hero::before {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        content: "";
-        pointer-events: none;
-        background:
-          radial-gradient(circle at 50% 46%, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.78) 56%, rgba(2, 6, 23, 0.94)),
-          linear-gradient(180deg, rgba(5, 7, 19, 0.18), rgba(5, 7, 19, 0.78));
-      }
-
-      .hero-copy {
-        position: relative;
-        z-index: 2;
-        display: grid;
-        justify-items: center;
-        width: min(100%, 820px);
-        text-align: center;
-      }
-
       .kicker,
-      .panel-label,
       .meta-label,
       .mini-label {
         margin: 0;
@@ -236,76 +204,29 @@
         text-transform: uppercase;
       }
 
-      h1 {
-        max-width: 820px;
-        margin: 14px auto 20px;
-        font-family: var(--display);
-        font-size: clamp(2rem, 5.2vw, 4.2rem);
-        line-height: 1.04;
-        letter-spacing: 0;
+      .filter-trigger {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
 
-      .hero-summary {
-        max-width: 720px;
-        margin: 0 auto;
-        color: #d7e2f5;
-        font-size: clamp(1rem, 1.2vw, 1.12rem);
-      }
-
-      .hero-scroll-cue {
-        position: absolute;
-        bottom: 18px;
-        left: 50%;
-        z-index: 3;
-        display: grid;
-        place-items: center;
-        width: 44px;
-        height: 44px;
-        padding: 0;
-        border: 1px solid rgba(34, 211, 238, 0.58);
-        border-radius: 50%;
-        background: rgba(2, 6, 23, 0.72);
-        color: var(--cyan);
-        cursor: pointer;
-        transform: translateX(-50%);
-        transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
-      }
-
-      .hero-scroll-cue:hover,
-      .hero-scroll-cue:focus-visible {
-        border-color: var(--cyan);
-        background: rgba(8, 18, 36, 0.92);
-        box-shadow: 0 0 22px rgba(34, 211, 238, 0.2);
-        outline: none;
-      }
-
-      .hero-scroll-cue span {
-        width: 12px;
-        height: 12px;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: translateY(-3px) rotate(45deg);
-        animation: hero-scroll-pulse 1.6s ease-in-out infinite;
-      }
-
-      @keyframes hero-scroll-pulse {
-        0%, 100% { transform: translateY(-4px) rotate(45deg); opacity: 0.58; }
-        50% { transform: translateY(3px) rotate(45deg); opacity: 1; }
+      .filter-trigger svg {
+        width: 17px;
+        height: 17px;
       }
 
       .scene-wrap {
         position: absolute;
-        inset: -12% -10%;
-        z-index: 0;
-        min-height: 0;
+        inset: 0;
         pointer-events: none;
-        opacity: 0.78;
+        opacity: 0.92;
       }
 
       .three-scene {
         position: absolute;
-        inset: 0;
-        z-index: 0;
+        inset: -2px;
       }
 
       .three-scene canvas {
@@ -314,30 +235,8 @@
         height: 100%;
       }
 
-      .radar-panel {
-        width: min(520px, 100%);
-        margin: 34px auto 0;
-        padding: 20px;
-        border: 1px solid var(--line-strong);
-        background: linear-gradient(180deg, rgba(10, 16, 32, 0.92), rgba(4, 7, 16, 0.92));
-        box-shadow: var(--shadow-cyan);
-        text-align: left;
-        clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-      }
-
-      .radar-panel h2 {
-        margin: 8px 0 10px;
-        font-family: var(--display);
-        font-size: 1.08rem;
-      }
-
-      .radar-panel p {
-        margin: 0;
-        color: var(--muted);
-      }
-
       .section {
-        padding: 52px 0;
+        padding: 36px 0 52px;
       }
 
       .section-heading {
@@ -366,13 +265,6 @@
         gap: 12px;
       }
 
-      .filter-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
       .filter-modal {
         position: fixed;
         inset: 0;
@@ -388,7 +280,10 @@
       }
 
       .filter-dialog {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
         width: min(620px, 100%);
+        max-height: calc(100vh - 36px);
         border: 1px solid var(--line-strong);
         background:
           linear-gradient(135deg, rgba(34, 211, 238, 0.12), transparent 38%),
@@ -419,6 +314,7 @@
       }
 
       .filter-dialog-body {
+        overflow-y: auto;
         padding: 18px;
       }
 
@@ -447,6 +343,13 @@
 
       .filter-field-wide {
         grid-column: 1 / -1;
+      }
+
+      .filter-dialog-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
       }
 
       .pager {
@@ -1126,13 +1029,6 @@
         transform: translateY(0);
       }
 
-      @media (max-width: 1060px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-      }
-
       @media (max-width: 720px) {
         .shell {
           width: min(100% - 24px, var(--max));
@@ -1141,10 +1037,6 @@
         .topbar {
           position: static;
           align-items: flex-start;
-        }
-
-        .hero {
-          padding-top: 34px;
         }
 
         .details-body,
@@ -1170,10 +1062,6 @@
 
         .source-preview-image {
           height: clamp(150px, 42vw, 190px);
-        }
-
-        .three-scene {
-          inset: 0;
         }
 
         .section-heading {
@@ -1208,62 +1096,31 @@
           animation-iteration-count: 1 !important;
         }
 
-        .hero-scroll-cue span {
-          animation: none;
-        }
       }
     </style>
   </head>
   <body>
     <header class="topbar">
       <div class="brand">
-        <div class="brand-sigil" aria-hidden="true">AID</div>
+        <div class="brand-sigil">
+          <div class="scene-wrap" aria-label="3D neon information scene">
+            <div class="three-scene" id="three-scene" aria-hidden="true"></div>
+          </div>
+        </div>
         <div>
-          <p class="site-name">AI 每日新聞</p>
+          <p class="site-name">AI 情報資訊艙</p>
           <span class="latest-update">最新更新日期 <strong data-latest-update-date>2026-07-12</strong></span>
         </div>
       </div>
+      <button class="date-button filter-trigger" type="button" data-open-filters aria-haspopup="dialog" aria-controls="filter-dialog">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+        </svg>
+        <span>篩選</span>
+      </button>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-copy">
-          <p class="kicker">Retro Future Intel Drop</p>
-          <h1 id="page-title">AI 情報資訊艙</h1>
-          <p class="hero-summary" data-trend-summary></p>
-          <aside class="radar-panel">
-            <p class="panel-label">Archive Filters</p>
-            <div class="filter-panel">
-              <div class="filter-grid">
-                <div class="filter-field filter-field-wide">
-                  <label for="search-filter">關鍵字搜尋</label>
-                  <input id="search-filter" type="search" placeholder="搜尋標題、品牌、產品、摘要..." data-search-filter>
-                </div>
-                <div class="filter-field">
-                  <label for="brand-filter">品牌</label>
-                  <select id="brand-filter" data-brand-filter></select>
-                </div>
-                <div class="filter-field">
-                  <label for="category-filter">分類</label>
-                  <select id="category-filter" data-category-filter></select>
-                </div>
-              </div>
-              <div class="filter-actions">
-                <button class="date-button" type="button" data-open-more-filters>更多</button>
-                <button class="date-button" type="button" data-reset-filters>清除篩選</button>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        <div class="scene-wrap" aria-label="3D neon information scene">
-          <div class="three-scene" id="three-scene" aria-hidden="true"></div>
-        </div>
-        <button class="hero-scroll-cue" type="button" data-scroll-to-articles aria-label="前往第一篇文章">
-          <span aria-hidden="true"></span>
-        </button>
-      </section>
-
       <section class="section shell" aria-labelledby="rest-title" data-rest-section>
         <div class="section-heading">
           <div>
@@ -1284,17 +1141,29 @@
 
     <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-    <div class="filter-modal" hidden data-filter-modal role="dialog" aria-modal="true" aria-labelledby="more-filter-title">
-      <div class="filter-dialog">
+    <div class="filter-modal" hidden data-filter-modal role="dialog" aria-modal="true" aria-labelledby="filter-title">
+      <div class="filter-dialog" id="filter-dialog">
         <header class="filter-dialog-header">
-          <h2 class="filter-dialog-title" id="more-filter-title">更多篩選</h2>
-          <button class="date-button" type="button" data-close-more-filters>關閉</button>
+          <h2 class="filter-dialog-title" id="filter-title">篩選文章</h2>
+          <button class="date-button" type="button" data-close-filters>關閉</button>
         </header>
         <div class="filter-dialog-body">
           <div class="filter-grid">
+            <div class="filter-field filter-field-wide">
+              <label for="search-filter">關鍵字搜尋</label>
+              <input id="search-filter" type="search" placeholder="搜尋標題、品牌、產品、摘要..." data-search-filter>
+            </div>
             <div class="filter-field">
               <label for="date-filter">日期</label>
               <select id="date-filter" data-date-filter></select>
+            </div>
+            <div class="filter-field">
+              <label for="brand-filter">品牌</label>
+              <select id="brand-filter" data-brand-filter></select>
+            </div>
+            <div class="filter-field">
+              <label for="category-filter">分類</label>
+              <select id="category-filter" data-category-filter></select>
             </div>
             <div class="filter-field">
               <label for="status-filter">狀態</label>
@@ -1307,8 +1176,11 @@
           </div>
         </div>
         <footer class="filter-dialog-footer">
-          <span class="pager-info">篩選會立即套用到文章列表。</span>
-          <button class="date-button" type="button" data-close-more-filters>完成</button>
+          <button class="date-button" type="button" data-reset-filters>清除篩選</button>
+          <div class="filter-dialog-actions">
+            <button class="date-button" type="button" data-close-filters>取消</button>
+            <button class="date-button" type="button" data-apply-filters>篩選</button>
+          </div>
         </footer>
       </div>
     </div>
@@ -1670,18 +1542,20 @@
           }
         ]
       });
+      const defaultFilters = Object.freeze({
+        search: "",
+        date: "all",
+        brand: "all",
+        category: "all",
+        status: "all",
+        importance: "all"
+      });
       const state = {
         page: 1,
         pageSize: 8,
-        filters: {
-          search: "",
-          date: "all",
-          brand: "all",
-          category: "all",
-          status: "all",
-          importance: "all"
-        }
+        filters: { ...defaultFilters }
       };
+      let draftFilters = { ...state.filters };
       const latestDate = data.date;
       let latestAvailableDate = latestDate;
       const firstAvailableDate = "2026-07-09";
@@ -2044,9 +1918,17 @@
       };
       const toast = document.querySelector("[data-toast]");
       const filterModal = document.querySelector("[data-filter-modal]");
+      const filterTrigger = document.querySelector("[data-open-filters]");
+      const filterBindings = [
+        ["[data-search-filter]", "search"],
+        ["[data-date-filter]", "date"],
+        ["[data-brand-filter]", "brand"],
+        ["[data-category-filter]", "category"],
+        ["[data-status-filter]", "status"],
+        ["[data-importance-filter]", "importance"]
+      ];
 
       document.querySelector("[data-latest-update-date]").textContent = latestAvailableDate;
-      document.querySelector("[data-trend-summary]").textContent = "瀏覽所有已整理的 AI 新聞，使用篩選與分頁快速回到過去的重要更新。";
 
       function unique(values) {
         return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b, "zh-Hant"));
@@ -2076,13 +1958,32 @@
         showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 2800);
       }
 
-      function openMoreFilters() {
-        filterModal.hidden = false;
-        document.querySelector("[data-date-filter]").focus();
+      function syncFilterControls(filters) {
+        filterBindings.forEach(([selector, key]) => {
+          document.querySelector(selector).value = filters[key];
+        });
       }
 
-      function closeMoreFilters() {
+      function openFilters() {
+        draftFilters = { ...state.filters };
+        syncFilterControls(draftFilters);
+        filterModal.hidden = false;
+        document.querySelector("[data-search-filter]").focus();
+      }
+
+      function closeFilters() {
+        draftFilters = { ...state.filters };
+        syncFilterControls(draftFilters);
         filterModal.hidden = true;
+        filterTrigger.focus();
+      }
+
+      function applyFilters() {
+        state.filters = { ...draftFilters };
+        state.page = 1;
+        renderStories();
+        filterModal.hidden = true;
+        filterTrigger.focus();
       }
 
       function reportPath(value) {
@@ -2356,7 +2257,7 @@
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
         container.appendChild(canvas);
-        const particles = Array.from({ length: 80 }, (_, index) => ({
+        const particles = Array.from({ length: 18 }, (_, index) => ({
           x: Math.random(),
           y: Math.random(),
           z: Math.random(),
@@ -2376,47 +2277,32 @@
         function draw(time = 0) {
           const rect = container.getBoundingClientRect();
           context.clearRect(0, 0, rect.width, rect.height);
-          const gradient = context.createRadialGradient(rect.width * 0.55, rect.height * 0.45, 20, rect.width * 0.55, rect.height * 0.45, rect.width * 0.58);
+          const size = Math.min(rect.width, rect.height);
+          const gradient = context.createRadialGradient(rect.width * 0.5, rect.height * 0.5, size * 0.04, rect.width * 0.5, rect.height * 0.5, size * 0.72);
           gradient.addColorStop(0, "rgba(34,211,238,0.25)");
           gradient.addColorStop(0.55, "rgba(37,99,235,0.1)");
           gradient.addColorStop(1, "rgba(2,6,23,0)");
           context.fillStyle = gradient;
           context.fillRect(0, 0, rect.width, rect.height);
 
-          context.strokeStyle = "rgba(34,211,238,0.22)";
-          context.lineWidth = 1;
-          for (let i = 0; i < 12; i += 1) {
-            const y = rect.height * 0.68 + i * 20;
-            context.beginPath();
-            context.moveTo(rect.width * 0.12 - i * 22, y);
-            context.lineTo(rect.width * 0.88 + i * 22, y);
-            context.stroke();
-          }
-          for (let i = -8; i <= 8; i += 1) {
-            context.beginPath();
-            context.moveTo(rect.width * 0.5, rect.height * 0.38);
-            context.lineTo(rect.width * 0.5 + i * 46, rect.height * 0.98);
-            context.stroke();
-          }
-
           particles.forEach((particle) => {
-            const drift = reduceMotion ? 0 : Math.sin(time * 0.001 + particle.phase) * 0.035;
+            const drift = reduceMotion ? 0 : Math.sin(time * 0.001 + particle.phase) * 0.025;
             const x = rect.width * (particle.x + drift);
             const y = rect.height * particle.y;
-            const size = 1 + particle.z * 2.2;
+            const particleSize = 0.7 + particle.z * 1.1;
             context.fillStyle = particle.z > 0.62 ? "rgba(251,63,79,0.82)" : "rgba(34,211,238,0.82)";
-            context.fillRect(x, y, size, size);
+            context.fillRect(x, y, particleSize, particleSize);
           });
 
           context.save();
-          context.translate(rect.width * 0.55, rect.height * 0.43);
+          context.translate(rect.width * 0.5, rect.height * 0.5);
           context.rotate(reduceMotion ? 0.4 : time * 0.00035);
           context.strokeStyle = "rgba(34,211,238,0.9)";
-          context.lineWidth = 2;
-          context.strokeRect(-88, -88, 176, 176);
+          context.lineWidth = Math.max(1, size * 0.035);
+          context.strokeRect(size * -0.28, size * -0.28, size * 0.56, size * 0.56);
           context.strokeStyle = "rgba(251,63,79,0.82)";
           context.rotate(0.78);
-          context.strokeRect(-62, -62, 124, 124);
+          context.strokeRect(size * -0.2, size * -0.2, size * 0.4, size * 0.4);
           context.restore();
 
           if (!reduceMotion) window.requestAnimationFrame(draw);
@@ -2511,11 +2397,6 @@
           return;
         }
 
-        if (event.target.closest("[data-scroll-to-articles]")) {
-          scrollToFirstArticle();
-          return;
-        }
-
         if (event.target.closest("[data-page-prev]")) {
           state.page -= 1;
           renderStories();
@@ -2530,67 +2411,45 @@
           return;
         }
 
-        if (event.target.closest("[data-open-more-filters]")) {
-          openMoreFilters();
+        if (event.target.closest("[data-open-filters]")) {
+          openFilters();
           return;
         }
 
-        if (event.target.closest("[data-close-more-filters]")) {
-          closeMoreFilters();
+        if (event.target.closest("[data-close-filters]")) {
+          closeFilters();
           return;
         }
 
         if (event.target === filterModal) {
-          closeMoreFilters();
+          closeFilters();
           return;
         }
 
         if (event.target.closest("[data-reset-filters]")) {
-          state.filters = {
-            search: "",
-            date: "all",
-            brand: "all",
-            category: "all",
-            status: "all",
-            importance: "all"
-          };
-          state.page = 1;
-          document.querySelector("[data-search-filter]").value = "";
-          document.querySelector("[data-date-filter]").value = "all";
-          document.querySelector("[data-brand-filter]").value = "all";
-          document.querySelector("[data-category-filter]").value = "all";
-          document.querySelector("[data-status-filter]").value = "all";
-          document.querySelector("[data-importance-filter]").value = "all";
-          renderStories();
-          showToast("已清除篩選。");
+          draftFilters = { ...defaultFilters };
+          syncFilterControls(draftFilters);
+          return;
+        }
+
+        if (event.target.closest("[data-apply-filters]")) {
+          applyFilters();
           return;
         }
 
       });
 
-      document.querySelector("[data-search-filter]").addEventListener("input", (event) => {
-        state.filters.search = event.target.value;
-        state.page = 1;
-        renderStories();
-      });
-
-      [
-        ["[data-date-filter]", "date"],
-        ["[data-brand-filter]", "brand"],
-        ["[data-category-filter]", "category"],
-        ["[data-status-filter]", "status"],
-        ["[data-importance-filter]", "importance"]
-      ].forEach(([selector, key]) => {
-        document.querySelector(selector).addEventListener("change", (event) => {
-          state.filters[key] = event.target.value;
-          state.page = 1;
-          renderStories();
+      filterBindings.forEach(([selector, key]) => {
+        const control = document.querySelector(selector);
+        const eventName = key === "search" ? "input" : "change";
+        control.addEventListener(eventName, (event) => {
+          draftFilters[key] = event.target.value;
         });
       });
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && !filterModal.hidden) {
-          closeMoreFilters();
+          closeFilters();
         }
       });
 

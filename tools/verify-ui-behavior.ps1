@@ -20,9 +20,12 @@ function Test-UiRequirement {
   $failures.Add($Label)
 }
 
-Test-UiRequirement 'Homepage has a Banner scroll button' ($indexHtml -match 'data-scroll-to-articles')
+Test-UiRequirement 'Homepage title uses AI information cockpit name' (($indexHtml -match '<title>AI 情報資訊艙</title>') -and ($indexHtml -match '<p class="site-name">AI 情報資訊艙</p>'))
+Test-UiRequirement 'Homepage has no Hero section' (-not ($indexHtml -match '<section class="hero"'))
+Test-UiRequirement 'Topbar opens the complete filter dialog' (($indexHtml -match 'data-open-filters') -and ($indexHtml -match 'data-apply-filters'))
+Test-UiRequirement 'Brand sigil contains the 3D scene' ($indexHtml -match '(?s)<div class="brand-sigil">.*?aria-label="3D neon information scene".*?</div>')
 Test-UiRequirement 'Homepage defines first-article scrolling' ($indexHtml -match 'function\s+scrollToFirstArticle\s*\(')
-Test-UiRequirement 'Pagination invokes first-article scrolling' ([regex]::Matches($indexHtml, 'scrollToFirstArticle\(\);').Count -ge 3)
+Test-UiRequirement 'Pagination invokes first-article scrolling' ([regex]::Matches($indexHtml, 'scrollToFirstArticle\(\);').Count -ge 2)
 Test-UiRequirement 'Homepage respects reduced motion' (($indexHtml -match 'prefers-reduced-motion:\s*reduce') -and ($indexHtml -match 'behavior:\s*reduceMotion\s*\?'))
 Test-UiRequirement 'Article page defines image resolution' ($articleHtml -match 'function\s+getArticleImageUrl\s*\(')
 Test-UiRequirement 'Article page derives dated TOP3 images' ($articleHtml -match 'featured-\$\{item\.publishedAt\}-\$\{String\(rank\)\.padStart\(2')
