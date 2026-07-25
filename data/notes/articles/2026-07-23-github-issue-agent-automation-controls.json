@@ -1,0 +1,19 @@
+{
+  "articleId": "2026-07-23-github-issue-agent-automation-controls",
+  "date": "2026-07-23",
+  "title": "GitHub Issue 自動化新增信心分級、理由與核准面板",
+  "updatedAt": "2026-07-24T09:47:31.873Z",
+  "contentHtml": "<p>GitHub 裡有一個 AI 小幫手，會幫你整理 Issues。</p><p>例如有人建立 Issue：</p><blockquote><p>Safari 上按鈕跑版，而且鍵盤無法操作。</p></blockquote><p>AI 可能建議：</p><ul><li>加上 <code>Safari</code> 標籤</li><li>加上 <code>無障礙</code> 標籤</li><li>類型設為 <code>Bug</code></li><li>指派給前端團隊</li></ul><p>每個建議旁邊都會顯示：</p><ul><li><strong>高信心</strong>：AI 很確定，可以自動執行</li><li><strong>中信心</strong>：AI 不完全確定，等你按「接受」</li><li><strong>低信心</strong>：AI 很沒把握，最好由人判斷</li><li><strong>操作理由</strong>：告訴你它為什麼這樣分類</li></ul><p>所以理想流程是：</p><blockquote><p>AI 先整理大量 Issues → 明確的直接處理 → 不確定的留給人確認。</p></blockquote><p>「批次核准」就是一次接受多個建議；「稽核紀錄」則是留下誰在什麼時間接受了哪些操作。</p>",
+  "contentText": "GitHub 裡有一個 AI 小幫手，會幫你整理 Issues。\n例如有人建立 Issue：\nSafari 上按鈕跑版，而且鍵盤無法操作。\nAI 可能建議：\n加上 Safari 標籤\n加上 無障礙 標籤\n類型設為 Bug\n指派給前端團隊\n每個建議旁邊都會顯示：\n高信心：AI 很確定，可以自動執行\n中信心：AI 不完全確定，等你按「接受」\n低信心：AI 很沒把握，最好由人判斷\n操作理由：告訴你它為什麼這樣分類\n所以理想流程是：\nAI 先整理大量 Issues → 明確的直接處理 → 不確定的留給人確認。\n「批次核准」就是一次接受多個建議；「稽核紀錄」則是留下誰在什麼時間接受了哪些操作。",
+  "tags": [
+    "AI Agent",
+    "UI/UX",
+    "前端開發"
+  ],
+  "references": [
+    {
+      "label": "GitHub Changelog",
+      "url": "https://github.blog/changelog/2026-07-23-agent-automation-controls-in-github-issues-in-public-preview/"
+    }
+  ]
+}
